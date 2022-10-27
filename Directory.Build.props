@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <Product>Xenial</Product>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts\nuget</PackageOutputPath>
+    <IncludeSource>True</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Copyright>Copyright $([System.Char]::ConvertFromUtf32(169)) Vertiq 2019-$([System.DateTime]::Today.ToString('yyyy'))</Copyright>
+    <Authors>Vertiq</Authors>
+    <RepositoryUrl>https://github.com/xenial-io/Xenial.BTool</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+</Project>
