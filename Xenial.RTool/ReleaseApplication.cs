@@ -16,9 +16,10 @@ public sealed record ReleaseApplication(
     public Task Release()
     {
         var middleware = new ReleaseMiddleware();
-        middleware
-            .Use(next => context => CheckForGit(next, context, new GitRepositoryDetector(FileSystem)));
 
+        middleware
+            .Use(next => ctx => CheckForGit(next, ctx, new GitRepositoryDetector(FileSystem)))
+            .Use(next => ctx => ConfirmBranch(next, ctx));
 
         var app = middleware.Build();
 
@@ -36,6 +37,37 @@ public sealed record ReleaseApplication(
         }
 
         await next(ctx);
+    }
+
+    private static readonly string[] mainBranches = new[]
+    {
+        "main",
+        "master"
+    };
+
+    public async Task ConfirmBranch(ReleaseApplicationDelegate next, ReleaseContext ctx)
+    {
+        var currentBranch = await ctx.CommandRunner.ReadCommand("branch --show-current", ctx.CurrentDirectory);
+
+        if (!mainBranches.Contains(currentBranch))
+        {
+            var branchStrings = string.Join(" or ", mainBranches);
+            ctx.Console.MarkupLineInterpolated($"[yellow]The current branch you are working on is not [/][white]{branchStrings}[/]");
+            ctx.Console.MarkupLineInterpolated($"[yellow]actually it is [red]{currentBranch}[/][/]");
+            
+            var result = ctx.Console.Prompt(
+                new ConfirmationPrompt("Do you want to continue") { DefaultValue = false }
+            );
+
+            if (result)
+            {
+                await next(ctx);
+            }
+        }
+        else
+        {
+            await next(ctx);
+        }
     }
 }
 

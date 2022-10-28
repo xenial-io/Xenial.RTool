@@ -1,0 +1,3 @@
+﻿The current branch you are working on is not main or master
+actually it is topic/my-feature-123
+Do you want to continue [y/n] (n): y
