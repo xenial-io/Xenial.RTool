@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<MinVerTagPrefix>v</MinVerTagPrefix>
+	  <MinVerTagPrefix>v</MinVerTagPrefix>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<PackageId>b-tool</PackageId>
-	<PackAsTool>true</PackAsTool>
-	<ToolCommandName>b</ToolCommandName>
+	  <PackageId>r-tool</PackageId>
+	  <PackAsTool>true</PackAsTool>
+	  <ToolCommandName>r</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
