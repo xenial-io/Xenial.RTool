@@ -1,0 +1,1 @@
+﻿Not in a git repository: /var/www/

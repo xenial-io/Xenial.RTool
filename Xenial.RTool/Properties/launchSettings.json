@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Xenial.RTool": {
+      "commandName": "Project"
+    },
+    "Xenial.RTool No Git": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\mgrun\\Downloads"
+    }
+  }
+}

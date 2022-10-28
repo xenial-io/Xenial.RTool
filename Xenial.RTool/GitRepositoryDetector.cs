@@ -2,7 +2,7 @@
 
 namespace Xenial.RTool;
 
-public sealed record GitRepositoryDetector(IFileSystem FileSystem)
+public sealed record GitRepositoryDetector(IFileSystem FileSystem) : IGitRepositoryDetector
 {
     public bool DetectGitRepository(string? cd = null)
     {
