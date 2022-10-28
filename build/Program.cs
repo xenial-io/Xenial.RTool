@@ -1,4 +1,4 @@
-﻿var sln = "./Xenial.BTool.sln";
+﻿var sln = "./Xenial.RTool.sln";
 
 Target("restore", () => RunAsync("dotnet", $"restore {sln}"));
 
