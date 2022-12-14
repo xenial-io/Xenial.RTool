@@ -9,6 +9,6 @@
     "conventional-changelog-cli": "^2.2.2"
   },
   "scripts": {
-    "changelog": "conventional-changelog -t v -i CHANGELOG.md --same-file"
+    "changelog": "conventional-changelog --tag-prefix v -i CHANGELOG.md --same-file"
   }
 }
