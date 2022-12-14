@@ -1,3 +1,9 @@
+## <small>0.0.18 (2022-12-14)</small>
+
+* feat: first version working correctly ([2c131cb](https://github.com/xenial-io/Xenial.RTool/commit/2c131cb))
+
+
+
 ## <small>0.0.17 (2022-12-14)</small>
 
 * feat: now seams to work fine ([590fa1a](https://github.com/xenial-io/Xenial.RTool/commit/590fa1a))
