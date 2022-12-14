@@ -1,11 +1,19 @@
 ## <small>0.0.17 (2022-12-14)</small>
 
+* release: new version 0.0.17 ([230b7e5](https://github.com/xenial-io/Xenial.RTool/commit/230b7e5))
 * feat: semver? ([43e6f69](https://github.com/xenial-io/Xenial.RTool/commit/43e6f69))
 
 
 
-##  (2022-12-14)
+## <small>0.0.16 (2022-12-14)</small>
 
+* release: new version ABC ([005efb3](https://github.com/xenial-io/Xenial.RTool/commit/005efb3))
+
+
+
+## <small>0.0.15 (2022-12-14)</small>
+
+* feat: new version ([03530a8](https://github.com/xenial-io/Xenial.RTool/commit/03530a8))
 
 
 
