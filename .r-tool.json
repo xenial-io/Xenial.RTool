@@ -5,8 +5,7 @@
             { "command": "b" },
             { "command": "b", "args":"poke:version -s" },
             { "command": "yarn", "args": "changelog" },
-            { "command": "git", "args": "add ."},
-            { "command": "git", "args": "commit -m \"chore: new version %NEW_VERSION%\""},
+            { "command": "b", "args": "commit:version -s"},
             { "command": "git", "args": "push"}
         ]
     }

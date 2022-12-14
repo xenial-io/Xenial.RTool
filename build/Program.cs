@@ -17,9 +17,16 @@ Target("pack", DependsOn("test"),
 Target("poke:version", DependsOn("test"), async () =>
     {
         var json = await File.ReadAllTextAsync("package.json");
-        json = PokeJson.AddOrUpdateJsonValue(json, "version", Environment.GetEnvironmentVariable("NEW_VERSION"));
+        json = PokeJson.AddOrUpdateJsonValue(json, "version", Environment.GetEnvironmentVariable("SEMVER"));
         await File.WriteAllTextAsync("package.json", json);
     }
+);
+
+Target("commit:version", async () =>
+{
+    await RunAsync("git", $"add .");
+    await RunAsync("git", $"commit -m \"release: new version {Environment.GetEnvironmentVariable("SEMVER")}\"");
+}
 );
 
 Target("deploy", async () =>

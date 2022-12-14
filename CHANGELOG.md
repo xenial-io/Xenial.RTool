@@ -1,5 +1,11 @@
 ##  (2022-12-14)
 
+* feat: try to use $SEMVER ([aedf3fd](https://github.com/xenial-io/Xenial.RTool/commit/aedf3fd))
+
+
+
+##  (2022-12-14)
+
 
 
 
