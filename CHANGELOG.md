@@ -1,5 +1,13 @@
 ## <small>0.0.17 (2022-12-14)</small>
 
+* feat: now seams to work fine ([590fa1a](https://github.com/xenial-io/Xenial.RTool/commit/590fa1a))
+* feat: semver? ([43e6f69](https://github.com/xenial-io/Xenial.RTool/commit/43e6f69))
+* release: new version 0.0.17 ([230b7e5](https://github.com/xenial-io/Xenial.RTool/commit/230b7e5))
+
+
+
+## <small>0.0.17 (2022-12-14)</small>
+
 * release: new version 0.0.17 ([230b7e5](https://github.com/xenial-io/Xenial.RTool/commit/230b7e5))
 * feat: semver? ([43e6f69](https://github.com/xenial-io/Xenial.RTool/commit/43e6f69))
 
