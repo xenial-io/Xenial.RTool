@@ -1,3 +1,9 @@
+## <small>0.0.19 (2022-12-14)</small>
+
+* feat: added support for working directory in hooks ([a3a9ee7](https://github.com/xenial-io/Xenial.RTool/commit/a3a9ee7))
+
+
+
 ## <small>0.0.18 (2022-12-14)</small>
 
 * feat: first version working correctly ([2c131cb](https://github.com/xenial-io/Xenial.RTool/commit/2c131cb))
