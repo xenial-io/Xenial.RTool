@@ -268,14 +268,13 @@ public sealed record ReleaseApplication(
 
                     foreach (var hook in config.Hooks.Pre)
                     {
-
                         if (!string.IsNullOrEmpty(hook.Command))
                         {
                             ctx.Console.MarkupLineInterpolated($"[gray]Running Hook: [white]{hook}[/]...[/]");
                             await ctx.HookCommandRunner.RunCommand(
                                 hook.Command,
                                 hook.Args,
-                                ctx.CurrentDirectory,
+                                hook.WorkingDirectory ?? ctx.CurrentDirectory,
                                 new()
                                 {
                                     ["SEMVER"] = semver,
@@ -310,6 +309,8 @@ public sealed record RToolJsonHook
     public string? Command { get; set; }
     [JsonPropertyName("args")]
     public string? Args { get; set; }
+    [JsonPropertyName("wd")]
+    public string? WorkingDirectory { get; set; }
 }
 
 public sealed record ReleaseMiddleware : MiddlewareBuilder<ReleaseApplicationDelegate, ReleaseMiddleware>
