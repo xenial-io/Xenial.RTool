@@ -1,14 +1,16 @@
 ##  (2022-12-14)
 
+
+
+
+
+## <small>0.0.9 (2022-12-14)</small>
+
+* release: new version ABC ([0f20d3d](https://github.com/xenial-io/Xenial.RTool/commit/0f20d3d))
 * feat: new version ([66dff97](https://github.com/xenial-io/Xenial.RTool/commit/66dff97))
 * feat: new version ([3b9078a](https://github.com/xenial-io/Xenial.RTool/commit/3b9078a))
 
 
-
-##  (2022-12-14)
-
-* feat: new version ([66dff97](https://github.com/xenial-io/Xenial.RTool/commit/66dff97))
-* feat: new version ([3b9078a](https://github.com/xenial-io/Xenial.RTool/commit/3b9078a))
 
 ## <small>0.0.8 (2022-12-14)</small>
 
