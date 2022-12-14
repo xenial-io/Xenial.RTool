@@ -7,8 +7,7 @@
             { "command": "yarn", "args": "changelog" },
             { "command": "git", "args": "add ."},
             { "command": "git", "args": "commit -m \"chore: new version %NEW_VERSION%\""},
-            { "command": "git", "args": "push"},
-            { "command": "foooooooooooooooo", "args": "push"}
+            { "command": "git", "args": "push"}
         ]
     }
 }
