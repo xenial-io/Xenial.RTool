@@ -8,6 +8,5 @@ public interface IGitCommandRunner
 
 public interface IHookCommandRunner
 {
-    Task<string> ReadCommand(string command, string args, string? cd = null);
-    Task RunCommand(string command, string? args, string? cd = null);
+    Task RunCommand(string command, string? args, string? cd = null, Dictionary<string, string>? envVars = null);
 }

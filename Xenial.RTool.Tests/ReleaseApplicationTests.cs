@@ -135,7 +135,7 @@ public sealed class ReleaseApplicationTests
         await app.RunPreReleaseHooks(next, ctx, detector);
 
         A.CallTo(
-            () => HookCommandRunner.RunCommand("foo", "bar baz", ctx.CurrentDirectory)
+            () => HookCommandRunner.RunCommand("foo", "bar baz", ctx.CurrentDirectory, A<Dictionary<string, string>>.Ignored)
         ).MustHaveHappened();
     }
 }

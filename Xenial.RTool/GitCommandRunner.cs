@@ -17,13 +17,13 @@ public sealed class GitCommandRunner : IGitCommandRunner
 
 public sealed class HookCommandRunner : IHookCommandRunner
 {
-    public Task RunCommand(string command, string args, string? cd = null)
-        => RunAsync(command, args, workingDirectory: cd ?? Environment.CurrentDirectory);
+    public Task RunCommand(string command, string args, string? cd = null, Dictionary<string, string>? envVars = null)
+        => RunAsync(command, args, workingDirectory: cd ?? Environment.CurrentDirectory, configureEnvironment: args =>
+        {
+            foreach(var pair in envVars ?? new())
+            {
+                args[pair.Key] = pair.Value;    
+            }
+        });
 
-    public async Task<string> ReadCommand(string command, string? args, string? cd = null)
-    {
-        var (stdOut, _) = (await ReadAsync(command, args, workingDirectory: cd ?? Environment.CurrentDirectory));
-        var result = stdOut.Trim();
-        return result;
-    }
 }

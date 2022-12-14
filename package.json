@@ -1,0 +1,14 @@
+{
+  "name": "Xenial.RTool",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/xenial-io/Xenial.RTool.git",
+  "author": "Manuel Grundner <m.grundner@delegate.at>",
+  "license": "MIT",
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.2.2"
+  },
+  "scripts": {
+    "changelog": ""
+  }
+}

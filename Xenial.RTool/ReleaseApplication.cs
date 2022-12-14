@@ -38,8 +38,8 @@ public sealed record ReleaseApplication(
             .Use(next => ctx => FindMaxVersion(next, ctx))
             .Use(next => ctx => AskVersion(next, ctx))
             .Use(next => ctx => ConfirmVersion(next, ctx))
-            .Use(next => ctx => TagVersion(next, ctx))
             .Use(next => ctx => RunPreReleaseHooks(next, ctx, new GitRepositoryDetector(FileSystem)))
+            .Use(next => ctx => TagVersion(next, ctx))
             .Use(next => ctx => PushTags(next, ctx))
         ;
 
@@ -263,6 +263,9 @@ public sealed record ReleaseApplication(
                 var config = JsonSerializer.Deserialize<RToolJson>(jsonContent);
                 if (config is not null && config.Hooks is not null && config.Hooks.Pre is not null)
                 {
+                    var semver = ToSemVer(ctx.NewVersion);
+                    var tagName = $"v{semver}";
+
                     foreach (var hook in config.Hooks.Pre)
                     {
 
@@ -272,7 +275,12 @@ public sealed record ReleaseApplication(
                             await ctx.HookCommandRunner.RunCommand(
                                 hook.Command,
                                 hook.Args,
-                                ctx.CurrentDirectory
+                                ctx.CurrentDirectory,
+                                new()
+                                {
+                                    ["NEW_SEMVER"] = semver,
+                                    ["TAG_NAME"] = tagName
+                                }
                             );
                             ctx.Console.MarkupLineInterpolated($"[gray]Ran Hook: [white]{hook}[/].[/]");
                         }

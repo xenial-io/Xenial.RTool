@@ -26,8 +26,6 @@ Target("deploy", async () =>
     }
 });
 
-Target("release", () => ReleaseHelper.Release());
-
 Target("default", DependsOn("test"));
 
 await RunTargetsAndExitAsync(args);
