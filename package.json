@@ -1,6 +1,6 @@
 {
   "name": "xenial.rtool",
-  "version": "0.0.4",
+  "version": null,
   "main": "index.js",
   "repository": "https://github.com/xenial-io/Xenial.RTool.git",
   "author": "Manuel Grundner <m.grundner@delegate.at>",

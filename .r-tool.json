@@ -2,8 +2,8 @@
     "hooks": {
         "pre": [
             { "command": "yarn" },
-            { "command": "dotnet", "args":"b" },
-            { "command": "dotnet", "args":"b poke:version -s" },
+            { "command": "b" },
+            { "command": "b", "args":"poke:version -s" },
             { "command": "yarn", "args": "changelog" },
             { "command": "git", "args": "add ."},
             { "command": "git", "args": "commit -m \"chore: new version %NEW_VERSION%\""},
