@@ -9,7 +9,8 @@ namespace Xenial.RTool;
 public sealed record ReleaseApplication(
     IFileSystem FileSystem,
     IAnsiConsole AnsiConsole,
-    IGitCommandRunner CommandRunner
+    IGitCommandRunner CommandRunner,
+    IHookCommandRunner HookCommandRunner
 )
 {
     public enum VersionIncrement
@@ -41,7 +42,12 @@ public sealed record ReleaseApplication(
 
         var app = middleware.Build();
 
-        var context = new ReleaseContext(FileSystem, AnsiConsole, CommandRunner, CurrentDirectory);
+        var context = new ReleaseContext(
+            FileSystem, 
+            AnsiConsole, 
+            CommandRunner,
+            HookCommandRunner,
+            CurrentDirectory);
 
         return app(context);
     }
@@ -251,6 +257,7 @@ public sealed record ReleaseContext(
     IFileSystem FileSystem,
     IAnsiConsole Console,
     IGitCommandRunner CommandRunner,
+    IHookCommandRunner HookCommandRunner,
     string CurrentDirectory
 )
 {

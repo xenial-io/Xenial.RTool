@@ -16,17 +16,24 @@ public sealed class ReleaseApplicationTests
     );
     private TestConsole Console { get; } = new TestConsole();
     private IGitCommandRunner CommandRunner { get; } = A.Fake<IGitCommandRunner>();
+    private IHookCommandRunner HookCommandRunner { get; } = A.Fake<IHookCommandRunner>();
 
     private ReleaseContext CreateTestContext(string? cd = null)
         => new ReleaseContext(
             FileSystem,
             Console,
             CommandRunner,
+            HookCommandRunner,
             cd ?? Environment.CurrentDirectory
     );
 
     private (ReleaseApplication app, ReleaseContext ctx) CreateApplication()
-        => (new ReleaseApplication(FileSystem, Console, CommandRunner), CreateTestContext());
+        => (new ReleaseApplication(
+                FileSystem, 
+                Console, 
+                CommandRunner, 
+                HookCommandRunner
+            ), CreateTestContext());
 
     [Fact]
     public async Task CheckForGitMustNotCallNextWhenNotInGitRepo()
@@ -89,5 +96,15 @@ public sealed class ReleaseApplicationTests
 
         await Verify(Console.Output)
             .UseParameters(currentBranch, mustConfirm, confirm);
+    }
+
+    [Fact]
+    public async Task RunPreReleaseHooks()
+    {
+        var next = A.Fake<ReleaseApplicationDelegate>(); 
+        var (app, ctx) = CreateApplication();
+
+        //await app.RunPreReleaseHoocks(next, ctx);
+
     }
 }
