@@ -278,8 +278,8 @@ public sealed record ReleaseApplication(
                                 ctx.CurrentDirectory,
                                 new()
                                 {
-                                    ["NEW_SEMVER"] = semver,
-                                    ["TAG_NAME"] = tagName
+                                    ["SEMVER"] = semver,
+                                    ["TAGNAME"] = tagName
                                 }
                             );
                             ctx.Console.MarkupLineInterpolated($"[gray]Ran Hook: [white]{hook}[/].[/]");
