@@ -1,3 +1,9 @@
+## <small>0.0.17 (2022-12-14)</small>
+
+* feat: semver? ([43e6f69](https://github.com/xenial-io/Xenial.RTool/commit/43e6f69))
+
+
+
 ##  (2022-12-14)
 
 
