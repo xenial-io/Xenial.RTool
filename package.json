@@ -1,6 +1,6 @@
 {
-  "name": "Xenial.RTool",
-  "version": "1.0.0",
+  "name": "xenial.rtool",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "https://github.com/xenial-io/Xenial.RTool.git",
   "author": "Manuel Grundner <m.grundner@delegate.at>",
@@ -9,6 +9,6 @@
     "conventional-changelog-cli": "^2.2.2"
   },
   "scripts": {
-    "changelog": ""
+    "changelog": "conventional-changelog -t v -i CHANGELOG.md --same-file"
   }
 }

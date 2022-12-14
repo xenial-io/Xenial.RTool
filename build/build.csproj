@@ -12,12 +12,13 @@
     <PackageReference Include="Bullseye" Version="4.1.1" />
     <PackageReference Include="SimpleExec" Version="11.0.0" />
     <PackageReference Include="Spectre.Console" Version="0.45.0" />
+    <PackageReference Include="Xenial.Beer" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-	<Using Include="build" />
-	<Using Include="SimpleExec.Command" Static="true"/>
-	<Using Include="Bullseye.Targets" Static="true"/>
+	  <Using Include="SimpleExec.Command" Static="true" />
+	  <Using Include="Bullseye.Targets" Static="true" />
+    <Using Include="Xenial.Delicious.Beer.Json" />
   </ItemGroup>
 
 </Project>

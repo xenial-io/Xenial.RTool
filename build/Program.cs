@@ -2,16 +2,24 @@
 
 Target("restore", () => RunAsync("dotnet", $"restore {sln}"));
 
-Target("build", DependsOn("restore"), 
+Target("build", DependsOn("restore"),
     () => RunAsync("dotnet", $"build {sln} --no-restore -c Release")
 );
 
-Target("test", DependsOn("build"), 
+Target("test", DependsOn("build"),
     () => RunAsync("dotnet", $"test {sln} --no-build --no-restore -c Release --logger:\"console;verbosity=normal\"")
 );
 
-Target("pack",DependsOn("test"),  
+Target("pack", DependsOn("test"),
     () => RunAsync("dotnet", $"pack {sln} --no-build --no-restore -c Release")
+);
+
+Target("poke:version", DependsOn("test"), async () =>
+    {
+        var json = await File.ReadAllTextAsync("package.json");
+        json = PokeJson.AddOrUpdateJsonValue(json, "version", Environment.GetEnvironmentVariable("NEW_VERSION"));
+        await File.WriteAllTextAsync("package.json", json);
+    }
 );
 
 Target("deploy", async () =>
