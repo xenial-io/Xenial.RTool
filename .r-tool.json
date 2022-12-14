@@ -2,7 +2,6 @@
     "hooks": {
         "pre": [
             { "command": "yarn" },
-            { "command": "b" },
             { "command": "b", "args":"poke:version -s" },
             { "command": "yarn", "args": "changelog" },
             { "command": "b", "args": "commit:version -s"},
