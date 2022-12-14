@@ -1,3 +1,10 @@
+## <small>0.0.13 (2022-12-14)</small>
+
+* release: new version ABC ([92bea99](https://github.com/xenial-io/Xenial.RTool/commit/92bea99))
+* feat: try to get changelog right ([ac2838a](https://github.com/xenial-io/Xenial.RTool/commit/ac2838a))
+
+
+
 ## <small>0.0.12 (2022-12-14)</small>
 
 * release: new version ABC ([47dc511](https://github.com/xenial-io/Xenial.RTool/commit/47dc511))
@@ -79,27 +86,6 @@
 * feat: tool almost finished ([85265c4](https://github.com/xenial-io/Xenial.RTool/commit/85265c4))
 * Add .gitattributes. ([71200e4](https://github.com/xenial-io/Xenial.RTool/commit/71200e4))
 * Add project files. ([89d2eaa](https://github.com/xenial-io/Xenial.RTool/commit/89d2eaa))
-
-
-
-##  (2022-12-14)
-
-
-
-
-##  (2022-12-14)
-
-
-
-
-##  (2022-12-14)
-
-
-
-
-##  (2022-12-14)
-
-* feat: try to get changelog right ([ac2838a](https://github.com/xenial-io/Xenial.RTool/commit/ac2838a))
 
 
 
