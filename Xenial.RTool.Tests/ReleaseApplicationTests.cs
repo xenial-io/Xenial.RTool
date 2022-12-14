@@ -98,13 +98,44 @@ public sealed class ReleaseApplicationTests
             .UseParameters(currentBranch, mustConfirm, confirm);
     }
 
+
+    [Fact]
+    public async Task RunPreReleaseHooksMustCallNextWhenInGitRepo()
+    {
+        var next = A.Fake<ReleaseApplicationDelegate>();
+        var detector = A.Fake<IGitRepositoryRootDetector>();
+        var runner = A.Fake<IHookCommandRunner>();
+        A.CallTo(() => detector.DetectGitRootDirectory(A<string>.Ignored)).Returns("var/www/myproject");
+
+        var (app, ctx) = CreateApplication();
+
+        await app.RunPreReleaseHooks(next, ctx, detector);
+
+        A.CallTo(next).MustHaveHappened();
+    }
+
     [Fact]
     public async Task RunPreReleaseHooks()
     {
+        var detector = A.Fake<IGitRepositoryRootDetector>();
+        A.CallTo(() => detector.DetectGitRootDirectory(A<string>.Ignored)).Returns("var/www/myproject");
+        FileSystem.AddFile("var/www/myproject/.r-tool.json", new MockFileData("""
+            {
+                "hooks": {
+                    "pre": [
+                        { "command": "foo", "args": "bar baz" }
+                    ]
+                }
+            }
+            """));
+
         var next = A.Fake<ReleaseApplicationDelegate>(); 
         var (app, ctx) = CreateApplication();
 
-        //await app.RunPreReleaseHoocks(next, ctx);
+        await app.RunPreReleaseHooks(next, ctx, detector);
 
+        A.CallTo(
+            () => HookCommandRunner.RunCommand("foo", "bar baz", ctx.CurrentDirectory)
+        ).MustHaveHappened();
     }
 }

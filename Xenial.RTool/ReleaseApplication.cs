@@ -1,4 +1,6 @@
 ﻿using System.IO.Abstractions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 using Spectre.Console;
 
@@ -37,14 +39,15 @@ public sealed record ReleaseApplication(
             .Use(next => ctx => AskVersion(next, ctx))
             .Use(next => ctx => ConfirmVersion(next, ctx))
             .Use(next => ctx => TagVersion(next, ctx))
+            .Use(next => ctx => RunPreReleaseHooks(next, ctx, new GitRepositoryDetector(FileSystem)))
             .Use(next => ctx => PushTags(next, ctx))
         ;
 
         var app = middleware.Build();
 
         var context = new ReleaseContext(
-            FileSystem, 
-            AnsiConsole, 
+            FileSystem,
+            AnsiConsole,
             CommandRunner,
             HookCommandRunner,
             CurrentDirectory);
@@ -244,6 +247,61 @@ public sealed record ReleaseApplication(
 
         await next(ctx);
     }
+    public async Task RunPreReleaseHooks(
+        ReleaseApplicationDelegate next,
+        ReleaseContext ctx,
+        IGitRepositoryRootDetector rootDetector
+    )
+    {
+        var root = rootDetector.DetectGitRootDirectory(ctx.CurrentDirectory);
+        if (!string.IsNullOrEmpty(root))
+        {
+            var file = ctx.FileSystem.Path.Combine(root, ".r-tool.json");
+            if (ctx.FileSystem.File.Exists(file))
+            {
+                var jsonContent = await ctx.FileSystem.File.ReadAllTextAsync(file);
+                var config = JsonSerializer.Deserialize<RToolJson>(jsonContent);
+                if (config is not null && config.Hooks is not null && config.Hooks.Pre is not null)
+                {
+                    foreach (var hook in config.Hooks.Pre)
+                    {
+
+                        if (!string.IsNullOrEmpty(hook.Command))
+                        {
+                            ctx.Console.MarkupLineInterpolated($"[gray]Running Hook: [white]{hook}[/]...[/]");
+                            await ctx.HookCommandRunner.RunCommand(
+                                hook.Command,
+                                hook.Args,
+                                ctx.CurrentDirectory
+                            );
+                            ctx.Console.MarkupLineInterpolated($"[gray]Ran Hook: [white]{hook}[/].[/]");
+                        }
+                    }
+                }
+            }
+            await next(ctx);
+        }
+    }
+}
+
+public sealed record RToolJson
+{
+    [JsonPropertyName("hooks")]
+    public RToolJsonHooks? Hooks { get; set; }
+}
+
+public sealed record RToolJsonHooks
+{
+    [JsonPropertyName("pre")]
+    public RToolJsonHook[]? Pre { get; init; }
+}
+
+public sealed record RToolJsonHook
+{
+    [JsonPropertyName("command")]
+    public string? Command { get; set; }
+    [JsonPropertyName("args")]
+    public string? Args { get; set; }
 }
 
 public sealed record ReleaseMiddleware : MiddlewareBuilder<ReleaseApplicationDelegate, ReleaseMiddleware>

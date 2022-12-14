@@ -20,7 +20,7 @@ public sealed class HookCommandRunner : IHookCommandRunner
     public Task RunCommand(string command, string args, string? cd = null)
         => RunAsync(command, args, workingDirectory: cd ?? Environment.CurrentDirectory);
 
-    public async Task<string> ReadCommand(string command, string args, string? cd = null)
+    public async Task<string> ReadCommand(string command, string? args, string? cd = null)
     {
         var (stdOut, _) = (await ReadAsync(command, args, workingDirectory: cd ?? Environment.CurrentDirectory));
         var result = stdOut.Trim();
