@@ -1,11 +1,12 @@
 ##  (2022-12-14)
 
+
+
+
+## <small>0.0.8 (2022-12-14)</small>
+
+* release: new version ABC ([f060ae2](https://github.com/xenial-io/Xenial.RTool/commit/f060ae2))
 * feat: try to use $SEMVER ([aedf3fd](https://github.com/xenial-io/Xenial.RTool/commit/aedf3fd))
-
-
-
-##  (2022-12-14)
-
 
 
 
