@@ -14,16 +14,3 @@ public sealed class GitCommandRunner : IGitCommandRunner
         return result;
     }
 }
-
-public sealed class HookCommandRunner : IHookCommandRunner
-{
-    public Task RunCommand(string command, string? args, string? cd = null, Dictionary<string, string>? envVars = null)
-        => RunAsync(command, args ?? "", workingDirectory: cd ?? Environment.CurrentDirectory, configureEnvironment: args =>
-        {
-            foreach(var pair in envVars ?? new())
-            {
-                args[pair.Key] = pair.Value;    
-            }
-        });
-
-}
