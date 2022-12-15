@@ -1,3 +1,9 @@
+## <small>0.0.20 (2022-12-15)</small>
+
+* fix: hooks exit code handling. it now fails if exit code is not zero ([13b0439](https://github.com/xenial-io/Xenial.RTool/commit/13b0439))
+
+
+
 ## <small>0.0.19 (2022-12-14)</small>
 
 * feat: added support for working directory in hooks ([a3a9ee7](https://github.com/xenial-io/Xenial.RTool/commit/a3a9ee7))
